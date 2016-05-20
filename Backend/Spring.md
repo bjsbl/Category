@@ -160,16 +160,59 @@ ContextLoaderListener 是一个servlet监听器，除了DispatherServlet创建�
 默认查找/WEB-INF/applicationContext.xml。也可以通过contextConfigLocation参数指定路径
 
 
-* @RequestMapping(value="",method=Get/Post)
+* @RequestMapping(value="",method=RequestMethod.Get/Post/Delete/Head/put/Trace/options)
 * @RequestParam
 * @Valid  ( @Size、@Pattern、
 * @PathVariable
 
 # 文件上传fileupload
-在Spring中注册multipart解析器,
-```xml <bean id="multipartResolver"
-		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+在Spring中注册multipart解析器
+``` <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="maxUploadSize" value="2048000" />
-	</bean>```
+	</bean>
+```
 
+
+#Spring RMI
+
+## 利弊
+* 很难穿越不同网络的防火墙
+* 客户端和服务端都必须采用Java,序列化问题，两端的版本必须相同。
+
+### hessian&burlap
+> 都是基于http,解决防火墙端口的问题，对于复杂的数据来说，hession和burlap的序列化支持不是很好
+#### 服务端注册服务
+hessian 与RMI类似，使用二进制传输数据，效率相当，只不过它支持的语言包括PHP,Python,c++,c#,java,flash,ruby....
+> http://hessian.caucho.com/
+
+导出一个hessian服务，只需要在xml中声明HessianServiceExporter，其实作为一个springMVC 控制器，在web.xml中配置DispatherServlet的<servlet-mapping />，然后把DispatcherServlet的请求转给hessian的服务，可以使用SimpleUrlHandlerMapping就可以实现。注册相应服务实现即可。
+
+burlap 是基于xml协议传输，所以比hessian的阅读性更好，也不需要定义wsdl或idl
+(同hessian类似)
+
+#### 客户端访问服务
+* hessian HessianProxyFacotryBean (serivceUrl,serivceInterface)
+* burlap BurlapProxyFactoryBean (serivceUrl,serivceInterface)
+
+### Spring HttpInvoker
+服务端：HttpInvokerServiceExporter (serivceUrl,serivceInterface)
+客户端：HttpInvokerProxyFactoryBean (serivceUrl,serivceInterface)
+
+> 看完之后是不是觉得像是三胞胎...
+
+
+# Spring REST
+* http信息转化器
+
+# Spring JMS
+ ActiveMQ
+* 创建连接工厂
+ActiveMQConnectionFactory
+
+* 传输目的地
+可以是一个队列或是一个主题，看需求而定。ActiveMQQueue/ActiveMQTopic
+
+* JmsTemlate接收、发送
+
+* 消息监听MessageListener
 
