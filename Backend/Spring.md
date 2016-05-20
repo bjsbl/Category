@@ -132,15 +132,13 @@ isolation 事物隔离级别
 read-only 只读
 timeout 事物超时时间
 rollback-for 事物回滚不提交
-<tx:adivce>
-  <tx:attributes>
-     <tx:method name="*" propagation="" read-only="" />
-  </tx:attributes>
-</tx:adivce>
+`<tx:adivce>`
+`   <tx:attributes>`
+`       <tx:method name="*" propagation="" read-only="" />`
+`   </tx:attributes>`
+`</tx:adivce>`
 
-***
 # MVC
-
 ## xml
 DispatcherServlet
 <mvc:resources mapping="" location="" />
@@ -162,7 +160,7 @@ ContextLoaderListener 是一个servlet监听器，除了DispatherServlet创建�
 
 * @RequestMapping(value="",method=RequestMethod.Get/Post/Delete/Head/put/Trace/options)
 * @RequestParam
-* @Valid  ( @Size、@Pattern、
+* @Valid  ( @Size、@Pattern..)
 * @PathVariable
 
 # 文件上传fileupload
