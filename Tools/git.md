@@ -1,4 +1,4 @@
-配置信息
+配置信息  
 `git config --global user.name 'Demo'`      
 `git config --global user.email 'Demo.demo.com'`    
 `git config -e` 编辑全局变量    
