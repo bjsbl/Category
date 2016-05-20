@@ -1,10 +1,10 @@
 背景
-一切都要从Bean开始
-为了解决java初期开发的复杂性，降低代码的耦合度
-Spring做了什么？
-轻量级pojo
-依赖注入
-切面、声明式编程
+* 一切都要从Bean开始
+* 为了解决java初期开发的复杂性，降低代码的耦合度
+# Spring做了什么？
+* 轻量级pojo
+* 依赖注入
+* 切面、声明式编程
 
 > 接口编程
 
@@ -140,12 +140,12 @@ rollback-for 事物回滚不提交
 
 # MVC
 ## xml
-DispatcherServlet
-<mvc:resources mapping="" location="" />
+`DispatcherServlet`
+`<mvc:resources mapping="" location="" />`
 
 ## Annotation
-<mvc:annotation-driven />
-<context:component-scan />
+ `<mvc:annotation-driven />`
+ `<context:component-scan />`
 
 ## View
 * org.springframework.web.servlet.view.FreeMarkerViewResolver
@@ -165,13 +165,12 @@ ContextLoaderListener 是一个servlet监听器，除了DispatherServlet创建�
 
 # 文件上传fileupload
 在Spring中注册multipart解析器
-``` <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+` <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="maxUploadSize" value="2048000" />
-	</bean>
-```
+	</bean>`
 
 
-#Spring RMI
+# Spring RMI
 
 ## 利弊
 * 很难穿越不同网络的防火墙
