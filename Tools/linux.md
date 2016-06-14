@@ -1,0 +1,7 @@
+# scp
+# iptables
+# find 
+# last
+
+
+
