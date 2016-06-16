@@ -1,3 +1,9 @@
+我们将消息的发布（publish）暂时称作producer，将消息的订阅（subscribe）表述为consumer，将中间的存储阵列称作broker   
+# producer---->broker<------consumer  
+
+
+
+
 # 因
 随着系统前端服务越来越多样化，对于后端的灵活性邀请越来越高，所以在系统架构方面应该考虑使用消息队列来支持系统。
 
@@ -9,8 +15,10 @@
 
 # 果
 
-## ActiveMQ
+## ActiveMQ 
 > http://activemq.apache.org/
+Apache ActiveMQ ™ is the most popular and powerful open source messaging and Integration Patterns server.
+
 
 ## Getting Started
 ### 安装
@@ -113,8 +121,9 @@ static:(uri1,uri2,uri3,...)?options
 <bean id="messageConverter" class="com.common.jms.NotifyMessageConverter">
 </bean>
 ```
-## Kafka
+## Kafka (没有
 > http://kafka.apache.org/
+Apache Kafka is publish-subscribe messaging rethought as a distributed commit log.
 
 
 ## Redis
