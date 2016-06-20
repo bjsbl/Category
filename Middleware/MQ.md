@@ -121,9 +121,29 @@ static:(uri1,uri2,uri3,...)?options
 <bean id="messageConverter" class="com.common.jms.NotifyMessageConverter">
 </bean>
 ```
-## Kafka (没有
+## Kafka 
 > http://kafka.apache.org/
+> http://zookeeper.apache.org/
+
 Apache Kafka is publish-subscribe messaging rethought as a distributed commit log.
+
+### Producers
+> bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test
+### Consumers
+> kafka-console-consumer.sh --zookeeper localhost:2181 --topic test --from-beginning
+### brokers
+
+### 消息传输机制
+* 最多一次，发送一次，无论成功失败，都不会重发。 (at monst once)  
+* 消息至少发送一次,如果消息未能接受成功，可能会重发，直到接受成功。(at least once)
+* 消息只会发一次 (exactly once)
+
+### Cluster 
+1.配置zookeeper
+2.配置每个server.properties;确保broker.id=N唯一性；
+3.配置producer.properties的bootstrap.servers=localhost:9092
+4.配置consumer.properties的zookeeper.connect=127.0.0.1:2181
+
 
 
 ## Redis
