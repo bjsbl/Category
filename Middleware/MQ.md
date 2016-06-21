@@ -1,3 +1,12 @@
+# JMS & AMQP
+JMS是sun提出消息同一操作的API,包括create,send,receive;常见的消息队列大部分已经实现了JMS Api;包括ActiveMQ,RabbitMq,支持的消息类型包括textMessage,BytesMessage,ObjectMessage等   
+  
+AMQP是一种协议，专门解决不同平台之间的消息传递问题，AMQP不是从API层限定，而是直接定义网络交换的数据格式。比JMS多了exchange和binding两个角色。支持的消息类型只有byte[],复杂的对象可以进行序列化处理。  
+
+
+
+
+
 我们将消息的发布（publish）暂时称作producer，将消息的订阅（subscribe）表述为consumer，将中间的存储阵列称作broker   
 # producer---->broker<------consumer  
 
