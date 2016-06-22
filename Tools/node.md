@@ -1,4 +1,4 @@
-# uglifyjs
+# uglifyjs 代码压缩
 > http://lisperator.net/uglifyjs/
 ```
 npm install uglify-js -g
@@ -25,7 +25,7 @@ echo 完成!
 pause & exit
 ```
 
-# jshint
+# jshint 代码验证，发现潜在问题
 > npm install jshint -g
 基本使用：
 ```
@@ -34,5 +34,9 @@ jshint xxx.js
 配置参数 package.json 
 > http://jshint.com/docs/
 
+# gulpjs 自动化构建
+> npm install -g gulp
 
+## gulp-cli
+Task 可以通过 gulp <task> <othertask> 方式来执行。如果只运行 gulp 命令，则会执行所注册的名为 default 的 task，如果没有这个 task，那么 gulp 会报错。
 
