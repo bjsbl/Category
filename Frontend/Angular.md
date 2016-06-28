@@ -142,7 +142,88 @@ angular.module('app',[]).run(function($rootscope,$location){$rootScope.$on('$rou
 
 
 
+# 延迟接口 $q
+* resolve(value) ——传入 value 解决派生的 promise。 如果 value 是一个通过 $q.reject 构造的拒绝对象(rejection) , 该promise 将被拒绝。  
+* reject(reason) ——拒绝派生的promise,并提供原因 。 这相当于通过 $q.reject构造的拒绝对象(rejection)作为参数传递给 resolve。  
+* notify(value)  ——在 promise 执行的过程中提供状态更新。 这在 promise 被解决或拒绝之前可能会被多次调用。  
+deffered 对象的属性
+promise – {Promise} —— 与延迟(deferred)相关联的 promise 对象。  
 
+## $q
+```
+angular.module('job.models', [])
+  .service('JobManager', ['$q', '$http', 'Job', function($q, $http, Job) {
+    return {
+      getAll: function(limit) {
+        var deferred = $q.defer();
+
+        $http.get('/api/jobs?limit=' + limit + '&full=true').success(function(data) {
+          var jobs = [];
+          for (var i = 0; i < data.objects.length; i ++) {
+            jobs.push(new Job(data.objects[i]));
+          }
+          deferred.resolve(jobs);
+        });
+
+        return deferred.promise;
+      }
+    };
+  }])
+  .factory('Job', function() {
+    function Job(data) {
+      for (attr in data) {
+        if (data.hasOwnProperty(attr))
+          this[attr] = data[attr];
+      }
+    }
+
+    Job.prototype.getResult = function() {
+      if (this.status == 'complete') {
+        if (this.passed === null) return "Finished";
+        else if (this.passed === true) return "Pass";
+        else if (this.passed === false) return "Fail";
+      }
+      else return "Running";
+    };
+
+    return Job;
+  });
+```
+
+## $resource
+```
+angular.module('job.models', [])
+  .factory('Job', ['$resource', function($resource) {
+    var Job = $resource('/api/jobs/:jobId', { full: 'true', jobId: '@id' }, {
+      query: {
+        method: 'GET',
+        isArray: false,
+        transformResponse: function(data, header) {
+          var wrapped = angular.fromJson(data);
+          angular.forEach(wrapped.items, function(item, idx) {
+            wrapped.items[idx] = new Job(item);
+          });
+          return wrapped;
+        }
+      }
+    });
+
+    Job.prototype.getResult = function() {
+      if (this.status == 'complete') {
+        if (this.passed === null) return "Finished";
+        else if (this.passed === true) return "Pass";
+        else if (this.passed === false) return "Fail";
+      }
+      else return "Running";
+    };
+
+    return Job;
+  }]);
+```
+# 承诺接口 Promise
+* then(successCallback, errorCallback, notifyCallback) ——不管 promise 是被处理还是被拒绝, 一旦结果可用,then 就会尽快地异步调用 成功/错误 回调函数 只要结果是可用的。这个方法 返回一个新的promise 对象, 根据 successCallback , errorCallback的返回值进行解决或拒绝 。 它还通过 notifyCallback 方法的返回值进行通知。
+* catch(errorCallback) —— promise.then(null, errorCallback) 的快捷方式
+* finally(callback) ——让你可以观察到一个 promise 是被执行还是被拒绝, 但这样做不用修改最后的 value值。 
 
 #待续
 # XHR
@@ -151,4 +232,5 @@ angular.module('app',[]).run(function($rootscope,$location){$rootScope.$on('$rou
 ## $apply
 
 angular.element($0).scope() 获取当前节点的scope
-
+angular.fromJson(str);  将str转换json;
+angular.toJson(obj,true);   将obj对象转换json字符串
