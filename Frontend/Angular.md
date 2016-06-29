@@ -231,6 +231,20 @@ angular.module('job.models', [])
 ## promise对象
 ## $apply
 
+# 技巧
 angular.element($0).scope() 获取当前节点的scope
 angular.fromJson(str);  将str转换json;
 angular.toJson(obj,true);   将obj对象转换json字符串
+
+ng-bind-html 双向绑定带有html标签的数据
+$sce.trustAsHtml(data)    
+```
+js:  
+app.filter('to_trusted', ['$sce', function ($sce) {
+return function (text) {
+    return $sce.trustAsHtml(text);
+};
+html:  
+<p ng-bind-html="currentWork.description | to_trusted"></p>
+```
+  
