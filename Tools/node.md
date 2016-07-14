@@ -1,5 +1,6 @@
 # uglifyjs 代码压缩
 > http://lisperator.net/uglifyjs/
+
 ```
 npm install uglify-js -g
 uglifyjs inet.js -m -o inet-min.js
@@ -33,6 +34,28 @@ jshint xxx.js
 ```
 配置参数 package.json 
 > http://jshint.com/docs/
+
+
+# clean-css 压缩合并CSS
+* 要求 Node.js 4.0+ 
+
+> https://github.com/jakubpawlowicz/clean-css
+
+> npm install clean-css
+> cleancss -o A-min.css A.css
+
+参数：
+-o, --output [output-file] 
+-s, --skip-import
+-d, --debug
+-c, --compatibility [ie7|ie8]      
+
+## Unix
+> cat a.css b.css c.css | cleancss -o d.css
+
+## window
+> type a.css b.css c.css | cleancss -o d.css
+
 
 # gulpjs 自动化构建
 > npm install -g gulp
