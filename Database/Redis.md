@@ -10,10 +10,17 @@
 
 # 目录命名
 ## Keys
-* del
-* keys
-* rename
-* exists
+* del <key>
+* keys <pattern>
+* rename <old> <new>
+* exists <key>
+* expire <key> <seconds>   --临时过期
+* persist <key>            --永久
+
+keys 是全局扫描，如果数据量大时可能会阻塞服务。
+scan 全局扫描，不会阻塞服务，但可能出现重复的值。
+
+
 
 ## String
 * append
@@ -23,7 +30,18 @@
 * strlen
 ## Hash
 ## List
+lpush
+rpush
+linsert
+llen <key>
+lindex <key> num
+lrange <key> start end
+lrem <key> num value
 ## Set
+sadd <key> value
+srem <key> value
+scard <key>   --查看集合大小
+sismember <key> value --元素是否存在
 ## SortedSet
 ## HyperLogLog
 ## GEO
