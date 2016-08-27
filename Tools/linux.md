@@ -16,3 +16,20 @@ yum -y install lrzsz 程序会自动安装，
 
 
 
+## logrotate 日志分隔
+/usr/bin/logrotate
+/etc/logrotate.conf
+```
+/usr/local/nginx/logs/*.log {
+    daily
+    notifempty
+    rotate 20
+    minsize 100M
+    size 300M
+    sharedscripts
+    postrotate
+        /usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf -s reload
+    endscript
+}
+```
+更多参见 > logrotate 帮助信息。
