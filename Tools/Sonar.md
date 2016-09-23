@@ -1,5 +1,11 @@
 # Sonarqube
  
+## 默认端口：
+localhost:9000/
+
+
+## sonar-runner
+
 (需要安装js,css,web插件)
 * 1.到updateCenter自动下载安装
 * 2.手动下载插件放到SonarHome/extensions/plugins/
