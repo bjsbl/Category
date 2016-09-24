@@ -28,3 +28,25 @@
 # Zookeeper
 > http://zookeeper.apache.org/
 
+
+# Spring集成
+jar依赖
+zookeeper.jar
+zkclient.jar
+slf4j-api.jar
+slf4j-log4j.jar
+netty.jar
+log4j.jar
+javassist.jar
+具体参见dubbo的pom.xml
+
+
+# Dubbo Monitor
+下载简易监控中心	
+> http://dubbo.io/Download-zh.htm
+解压后修改conf/dubbo.properties;
+./bin/start.sh
+具体使用参见：
+> http://dubbo.io/User+Guide-zh.htm
+
+
