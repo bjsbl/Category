@@ -40,6 +40,75 @@ log4j.jar
 javassist.jar
 具体参见dubbo的pom.xml
 
+# Dubbo Provider
+
+## XML
+```
+    <dubbo:application name="ktsoa.user" />
+
+	<dubbo:registry address="zookeeper://192.168.137.128:2181" />
+
+	<dubbo:protocol name="dubbo" port="20880" />
+
+
+	<dubbo:service interface="ktsoa.service.ITest" ref="Itest" />
+
+	 <bean id="Itest" class="ktsoa.service.impl.ITestImpl" />
+```
+
+## Annotation
+```
+    <dubbo:annotation />
+
+	<dubbo:application name="ktsoa.user" />
+
+	<dubbo:registry address="zookeeper://192.168.137.128:2181" />
+
+	<dubbo:protocol name="dubbo" port="20880" />
+
+	<context:component-scan base-package="ktsoa">
+		<context:include-filter type="annotation"
+			expression="com.alibaba.dubbo.config.annotation.Service" />
+		<context:exclude-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
+		<context:exclude-filter type="annotation"
+			expression="org.springframework.web.bind.annotation.ControllerAdvice" />
+	</context:component-scan>
+```
+
+注意service是dubbo的，不是spring的service;
+```
+package ktsoa.service.impl;
+
+import com.alibaba.dubbo.config.annotation.Service;
+
+import ktsoa.service.ITest;
+
+@Service(version = "1.0")
+public class ITestImpl implements ITest {
+
+	@Override
+	public String ITestService() {
+		// TODO Auto-generated method stub
+		return "Hello";
+	}
+
+}
+```
+
+# Dubbo consumer
+## xml
+
+```
+	<dubbo:application name="ktsoa.user.consumer" />
+
+	<dubbo:registry address="zookeeper://192.168.137.128:2181" />
+
+	<dubbo:reference interface="ktsoa.dubbo.service._UserService" id="_UserService" version="1.0" />
+```
+注意：dubbo:reference的路径必须和provider的路径一致，否则会出错的！，consumer只需要定义接口，不需要实现。
+
+
 
 # Dubbo Monitor
 下载简易监控中心	
