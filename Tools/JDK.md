@@ -39,3 +39,13 @@ newCachedThreadPool     | 创建一个可缓存线程池，如果线程池长度
 newFixedThreadPool      | 创建一个定长线程池，可控制线程最大并发数，超出的线程会在队列中等待
 newScheduledThreadPool  | 创建一个定长线程池，支持定时及周期性任务执行
 newSingleThreadExecutor | 创建一个单线程化的线程池，它只会用唯一的工作线程来执行任务，保证所有任务按照指定顺序(FIFO, LIFO, 优先级)执行
+
+
+
+## RandomAccessFile
+如果我们只希望访问文件的部分内容，而不是把文件从头读到尾，使用RandomAccessFile将会带来更简洁的代码以及更好的性能
+
+> getFilePointer()	返回文件记录指针的当前位置
+> seek(long pos)	将文件记录指针定位到pos的位置
+
+
