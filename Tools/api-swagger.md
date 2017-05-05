@@ -9,8 +9,6 @@
 * 测试的时候不需要再使用URL输入浏览器的方式来访问Controller
 传统的输入URL的测试方式对于post请求的传参比较麻烦（当然，可以使用postman这样的浏览器插件）
 
-
->Automated JSON API documentation for API's built with Spring 
 # https://github.com/springfox/springfox
 # https://springfox.github.io/springfox/docs/snapshot/
 
